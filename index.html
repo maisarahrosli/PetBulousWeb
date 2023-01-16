@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <title>Home</title>
+    <style>
+        body {
+          background-image: url('background2.png');
+        }
+        </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">PETBULOUS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <form class="form-inline my-2 my-lg-0">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-1">
+                  <a id="userlink" class="btn btn-primary" href="register.html">New Account</a>
+                </li>
+                
+                <li class="nav-item mx-1">
+                    <a id="signoutlink" class="btn btn-success" href="login.html">Login</a>
+                  </li>
+
+              </ul>
+          </form>
+        </div>
+      </nav>
+      
+      <h3 id="hh"></h3>
+
+      <script>
+
+
+        let userlink = document.getElementById('userlink');
+        let signoutlink = document.getElementById('signoutlink');
+        let header = document.getElementById('hh');
+        var currentuser = null;
+
+//--------------------------functions-----------------------//
+
+        function getUsername(){
+            let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+            if(keepLoggedIn == "yes"){
+                currentuser = JSON.parse(localStorage.getItem('user'));
+            }
+
+            else{
+                currentuser = JSON.parse(sessionStorage.getItem('user'));
+            }
+        }
+            function Signout(){
+                sessionStorage.removeItem('user');
+                localStorage.removeItem('user');
+                localStorage.removeItem('keepLoggedIn');
+                window.location = "Index.html";
+            }
+        
+//--------------------------window load-----------------------//
+        window.onload = function(){
+            getUsername();
+            if(currentuser == null){
+                userlink.innerText="New Account";
+                userlink.classList.replace("nav-link","btn");
+                userlink.classList.add("btn-primary");
+                userlink.href = "register.html";
+
+                signoutlink.innerText = "Login";
+                signoutlink.classList.replace("nav-link","btn");
+                signoutlink.classList.add("btn-success");
+                signoutlink.href = "login.html";
+                
+            }
+
+            else{
+                userlink.innerText= "More";
+                
+                userlink.classList.replace("btn", "nav-link");
+                userlink.classList.add("btn-primary");
+                userlink.href = "userhome.html";
+
+                signoutlink.innerText= "Sign Out";
+                signoutlink.classList.replace("btn", "nav-link");
+                signoutlink.classList.add("btn-success");
+                signoutlink.href = "javascript:Signout()";
+
+                
+            }
+        }
+        
+      </script>
+      <div class="content">
+        <h1> About <br><span>PETBULOUS</span></h1>
+        <p class="par" style="font-size: 24px; font-family: 'Times New Roman', Times, serif;color: rgb(63, 62, 62);">Petbulous (cat care system) is a website which is able to provide the necessary information
+            <br> to pet owners on an everyday basis. Petbulous website also addresses pet care issues.  
+            <br>This website will connect pet owners and persons eager to provide services.
+            <br>This allows pet owners to select the information and grooming tutorials that they require.</p>
+
+            
+
+        <div class="content">
+            <h1><br><span>VACCINATION</span></h1>
+        <p class="par" style="font-size: 24px; font-family: 'Times New Roman', Times, serif;color: rgb(63, 62, 62);">
+            
+            When comes to medicine, there is no one-size-fits-all. There are different type of medicine
+        <br> to be applied to different stage of ages. Cat vaccines are divided into two types which is 
+        <br>core vaccines and noncore vacines. Core vaccines is the one that is highly recomended
+        <br> by most vets while noncore vaccines are suggestted by vets depends on the environment 
+        <br>situation.</p>
+        
+         </div>   
+        <div class="content">
+            <h1 style="font-size: 80px;"> Bath<span> For Cats</span></h1>
+        <p class="par" style="font-size: 24px; font-family: 'Times New Roman', Times, serif;color: rgb(63, 62, 62);">
+            
+        <br>Generally, cats don't need us to bathe them. They're experts in staying clean. In fact, fur covered in water
+        <br>can feel dirty to a cat. It's a foreign substance they don't want on their coat. They do a great job keeping themselves clean.
+        <br>
+        <br> Click button below to know more</p>
+        
+        </div>
+
+        <div class="content">
+            <h1 style="font-size: 80px;"> Cats<span> Supplement</span></h1>
+            <p class="par" style="font-size: 24px; font-family: 'Times New Roman', Times, serif;color: rgb(63, 62, 62);">
+                
+                <br>Choosing the right supplements for your cat involves identifying which 
+                supplements your pet could benefit from. There are tons of options on the 
+                market for cats of all ages, sizes, and needs. The best way to identify which 
+                vitamins are best to introduce to your cat's diet is to ask your veterinarian.
+                <br>
+            <br>The best way to choose the supplemet for your cat is referring to your veterinarian</p>
+            
+    </div>
+    </div>
+
+</body>
+</html>
